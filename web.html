@@ -1,0 +1,417 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>InsightFlow - AI Feedback Analyzer</title>
+
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <header class="navbar">
+        <a href="#home" class="logo">InsightFlow</a>
+
+        <nav class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#analyzer">Analyze Feedback</a>
+            <a href="#dashboard">Dashboard</a>
+            <a href="#features">Features</a>
+        </nav>
+
+        <a href="#analyzer" class="nav-button">Get Started</a>
+    </header>
+
+    <main>
+
+        <!-- Hero Section -->
+        <section class="hero" id="home">
+            <div class="hero-content">
+                <span class="eyebrow">AI-POWERED FEEDBACK INTELLIGENCE</span>
+
+                <h1>
+                    Turn Feedback Into
+                    <span>Meaningful Insights</span>
+                </h1>
+
+                <p>
+                    InsightFlow helps you understand feedback, identify
+                    emotions, discover important topics, and find
+                    opportunities for improvement with AI.
+                </p>
+
+                <div class="hero-actions">
+                    <a href="#analyzer" class="primary-button">
+                        Analyze Feedback
+                    </a>
+
+                    <a href="#dashboard" class="secondary-button">
+                        View Dashboard
+                    </a>
+                </div>
+
+                <div class="hero-highlights">
+                    <span>✓ Sentiment Analysis</span>
+                    <span>✓ Topic Detection</span>
+                    <span>✓ Smart Recommendations</span>
+                </div>
+            </div>
+
+            <div class="hero-visual">
+                <div class="insight-card">
+                    <span class="card-label">INSIGHTFLOW OVERVIEW</span>
+                    <h2>Feedback Intelligence</h2>
+                    <p>Analysis statistics for this session</p>
+
+                    <div class="overview-stat">
+                        <span>Total Feedback</span>
+                        <strong id="hero-total">0</strong>
+                    </div>
+
+                    <div class="overview-stat">
+                        <span>Positive</span>
+                        <strong id="hero-positive">0%</strong>
+                    </div>
+
+                    <div class="overview-stat">
+                        <span>Neutral</span>
+                        <strong id="hero-neutral">0%</strong>
+                    </div>
+
+                    <div class="overview-stat">
+                        <span>Negative</span>
+                        <strong id="hero-negative">0%</strong>
+                    </div>
+
+                    <p class="card-note">
+                        Understand feedback. Make better decisions.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Feedback Analyzer -->
+        <section class="section analyzer-section" id="analyzer">
+            <div class="section-heading">
+                <span class="eyebrow">INTELLIGENT ANALYSIS</span>
+                <h2>Analyze Your Feedback</h2>
+                <p>
+                    Enter customer, student, employee, or user feedback
+                    to identify sentiment and important themes.
+                </p>
+            </div>
+
+            <div class="analyzer-container">
+                <form id="feedback-form">
+                    <label for="feedback-input">
+                        Your Feedback
+                    </label>
+
+                    <textarea
+                        id="feedback-input"
+                        name="feedback"
+                        rows="6"
+                        minlength="3"
+                        maxlength="5000"
+                        placeholder="Write or paste your feedback here..."
+                        required
+                    ></textarea>
+
+                    <div class="input-footer">
+                        <span id="char-count">0 / 5000 characters</span>
+
+                        <button type="submit" id="analyze-btn">
+                            Analyze Feedback
+                        </button>
+                    </div>
+
+                    <p id="error-message" role="alert"></p>
+                </form>
+
+                <!-- Analysis Output -->
+                <div id="analysis-result" class="analysis-result" hidden>
+                    <h3>Analysis Results</h3>
+
+                    <div class="result-grid">
+                        <div class="result-card">
+                            <span>Sentiment</span>
+                            <strong id="sentiment-result">--</strong>
+                        </div>
+
+                        <div class="result-card">
+                            <span>Confidence</span>
+                            <strong id="confidence-result">--</strong>
+                        </div>
+
+                        <div class="result-card">
+                            <span>Main Topics</span>
+                            <strong id="topics-result">--</strong>
+                        </div>
+                    </div>
+
+                    <div class="result-detail">
+                        <h4>Feedback Summary</h4>
+                        <p id="summary-result"></p>
+                    </div>
+
+                    <div class="result-detail">
+                        <h4>Recommended Improvements</h4>
+                        <p id="recommendation-result"></p>
+                    </div>
+
+                    <p class="disclaimer">
+                        AI-generated insights are estimates and should
+                        be reviewed before making important decisions.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dashboard -->
+        <section class="section dashboard-section" id="dashboard">
+            <div class="section-heading">
+                <span class="eyebrow">ANALYTICS DASHBOARD</span>
+                <h2>Your Feedback at a Glance</h2>
+                <p>
+                    Monitor analyzed feedback and understand the
+                    overall sentiment distribution.
+                </p>
+            </div>
+
+            <div class="stats-grid">
+                <article class="stat-card">
+                    <span>Total Feedback</span>
+                    <h3 id="total-feedback">0</h3>
+                    <p>Analyzed entries</p>
+                </article>
+
+                <article class="stat-card">
+                    <span>Positive Feedback</span>
+                    <h3 id="positive-feedback">0</h3>
+                    <p>Positive sentiment</p>
+                </article>
+
+                <article class="stat-card">
+                    <span>Neutral Feedback</span>
+                    <h3 id="neutral-feedback">0</h3>
+                    <p>Neutral sentiment</p>
+                </article>
+
+                <article class="stat-card">
+                    <span>Negative Feedback</span>
+                    <h3 id="negative-feedback">0</h3>
+                    <p>Negative sentiment</p>
+                </article>
+            </div>
+
+            <!-- Sentiment Distribution -->
+            <div class="dashboard-panel">
+                <h3>Sentiment Distribution</h3>
+
+                <div class="sentiment-bar" aria-label="Sentiment distribution">
+                    <div
+                        id="positive-bar"
+                        class="sentiment-positive"
+                        style="width: 0%"
+                    ></div>
+
+                    <div
+                        id="neutral-bar"
+                        class="sentiment-neutral"
+                        style="width: 0%"
+                    ></div>
+
+                    <div
+                        id="negative-bar"
+                        class="sentiment-negative"
+                        style="width: 0%"
+                    ></div>
+                </div>
+
+                <div class="sentiment-legend">
+                    <span>Positive: <strong id="positive-percent">0%</strong></span>
+                    <span>Neutral: <strong id="neutral-percent">0%</strong></span>
+                    <span>Negative: <strong id="negative-percent">0%</strong></span>
+                </div>
+            </div>
+
+            <!-- Feedback History -->
+            <div class="dashboard-panel">
+                <div class="panel-header">
+                    <h3>Recent Feedback</h3>
+
+                    <button
+                        type="button"
+                        id="clear-history-btn"
+                        class="secondary-button"
+                    >
+                        Clear History
+                    </button>
+                </div>
+
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Feedback</th>
+                                <th>Sentiment</th>
+                                <th>Main Topics</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="feedback-history">
+                            <tr>
+                                <td colspan="3">
+                                    No feedback analyzed yet.
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features -->
+        <section class="section features-section" id="features">
+            <div class="section-heading">
+                <span class="eyebrow">POWERFUL FEATURES</span>
+                <h2>Everything You Need to Understand Feedback</h2>
+                <p>
+                    Convert unstructured opinions into useful information
+                    for better decisions.
+                </p>
+            </div>
+
+            <div class="features-grid">
+                <article class="feature-card">
+                    <div class="feature-icon">✦</div>
+                    <h3>Sentiment Analysis</h3>
+                    <p>
+                        Classify feedback into positive, neutral,
+                        or negative sentiment using an AI model.
+                    </p>
+                </article>
+
+                <article class="feature-card">
+                    <div class="feature-icon">⌕</div>
+                    <h3>Topic Detection</h3>
+                    <p>
+                        Identify recurring subjects, common concerns,
+                        and frequently mentioned themes.
+                    </p>
+                </article>
+
+                <article class="feature-card">
+                    <div class="feature-icon">↗</div>
+                    <h3>AI Recommendations</h3>
+                    <p>
+                        Generate actionable suggestions based on
+                        the patterns found in analyzed feedback.
+                    </p>
+                </article>
+
+                <article class="feature-card">
+                    <div class="feature-icon">▦</div>
+                    <h3>Interactive Dashboard</h3>
+                    <p>
+                        Review feedback counts, sentiment percentages,
+                        and recent analysis results in one place.
+                    </p>
+                </article>
+
+                <article class="feature-card">
+                    <div class="feature-icon">≋</div>
+                    <h3>Feedback Summaries</h3>
+                    <p>
+                        Turn lengthy feedback into concise summaries
+                        that are easier to understand.
+                    </p>
+                </article>
+
+                <article class="feature-card">
+                    <div class="feature-icon">◎</div>
+                    <h3>Data-Driven Decisions</h3>
+                    <p>
+                        Use evidence from user feedback to prioritize
+                        improvements and address recurring problems.
+                    </p>
+                </article>
+            </div>
+        </section>
+
+        <!-- How It Works -->
+        <section class="section how-section">
+            <div class="section-heading">
+                <span class="eyebrow">HOW IT WORKS</span>
+                <h2>From Feedback to Action</h2>
+            </div>
+
+            <div class="steps-grid">
+                <article class="step-card">
+                    <span class="step-number">01</span>
+                    <h3>Collect</h3>
+                    <p>Enter the feedback you want to understand.</p>
+                </article>
+
+                <article class="step-card">
+                    <span class="step-number">02</span>
+                    <h3>Analyze</h3>
+                    <p>Process the text with the connected analysis service.</p>
+                </article>
+
+                <article class="step-card">
+                    <span class="step-number">03</span>
+                    <h3>Understand</h3>
+                    <p>Review sentiment, topics, and the feedback summary.</p>
+                </article>
+
+                <article class="step-card">
+                    <span class="step-number">04</span>
+                    <h3>Improve</h3>
+                    <p>Use the insights to plan meaningful improvements.</p>
+                </article>
+            </div>
+        </section>
+
+        <!-- Call to Action -->
+        <section class="cta-section">
+            <h2>Ready to Discover Better Insights?</h2>
+
+            <p>
+                Start analyzing feedback and turn opinions into
+                opportunities for improvement.
+            </p>
+
+            <a href="#analyzer" class="primary-button">
+                Start Analyzing
+            </a>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <a href="#home" class="logo">InsightFlow</a>
+
+        <p>Transform feedback into meaningful insights.</p>
+
+        <div class="footer-links">
+            <a href="#home">Home</a>
+            <a href="#analyzer">Analyzer</a>
+            <a href="#dashboard">Dashboard</a>
+            <a href="#features">Features</a>
+        </div>
+
+        <p class="copyright">
+            &copy; 2026 InsightFlow. Built for Build Battle 2026.
+        </p>
+    </footer>
+    <script src="script.js" defer></script>
+
+</body>
+</html>
